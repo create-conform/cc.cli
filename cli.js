@@ -406,6 +406,8 @@ var Interpreter = function (c, description, parent) {
         for (var a in self.actions) {
             self.actions[a](command);
         }
+
+        return command;
     };
 };
 
