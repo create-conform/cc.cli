@@ -276,6 +276,15 @@ var Interpreter = function (c, description, parent) {
         return self;
     };
 
+    this.parameter = function (c) {
+        if (c) {
+            var params = splitGroups(c);
+            self.mandatory = params.mandatory;
+            self.optional = params.optional;
+        }
+        return self;
+    };
+
     this.action = function (fn) {
         self.actions.push(fn);
         return self;
