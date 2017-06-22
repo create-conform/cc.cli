@@ -279,6 +279,7 @@ var Interpreter = function (c, description, parent) {
     this.parameter = function (c) {
         if (c) {
             var params = splitGroups(c);
+            self.name = params.words[0] || self.name;
             self.mandatory = params.mandatory;
             self.optional = params.optional;
         }
