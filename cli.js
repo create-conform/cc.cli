@@ -295,7 +295,7 @@ var Interpreter = function (c, description, parent) {
         if (!args) {
             args = [];
         }
-        else {
+        else if (self.name == HELP_CMD) {
             // first arg is name of command
             self.name = args[0];
         }
