@@ -158,7 +158,7 @@ var TextTable = function (matchTable) {
         self.updateLayout();
     };
 
-    this.print = function () {
+    this.print = function (noprint) {
         var text = "";
         var uRows = self.getRows();
         for (var r in uRows) {
@@ -179,7 +179,9 @@ var TextTable = function (matchTable) {
             text += self.margin + rowStr + (vSpacing > 0 ? Array(vSpacing + 1).join("\n") : "") + "\n";
         }
 
-        console.log(text);
+        if (!noprint) {
+            console.log(text);
+        }
 
         return text;
     };
@@ -219,9 +221,9 @@ var Interpreter = function (c, description, parent) {
     }
 
     this.displayHelp = function() {
-        var text = "\nUsage: " + self.getFullName() + getUsageParameters(self);
+        var text = "\nUsage: " + self.getFullName() + getUsageParameters(self) + "\n";
         if (self.description) {
-            text += "\n" + self.description;
+            text += "\n" + self.description + "\n";
         }
         var tableCommands, tableOptions;
         // initialize table (for matching)
@@ -247,11 +249,11 @@ var Interpreter = function (c, description, parent) {
         }
         if (tableCommands) {
             text += "\nCommands:\n";
-            text += tableCommands.print();
+            text += tableCommands.print(true);
         }
         if (tableOptions) {
             text += "\nOptions:\n";
-            text += tableOptions.print();
+            text += tableOptions.print(true);
         }
         text += "\n";
         console.log(text);
