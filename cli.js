@@ -221,7 +221,7 @@ var Interpreter = function (c, description, parent) {
     }
 
     this.displayHelp = function() {
-        var text = "\nUsage: " + self.getFullName() + getUsageParameters(self) + "\n";
+        var text = "\nUsage: " + self.getFullName() + getUsageParameters(self) + "\n"; 
         if (self.description) {
             text += "\n" + self.description + "\n";
         }
