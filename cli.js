@@ -159,6 +159,7 @@ var TextTable = function (matchTable) {
     };
 
     this.print = function () {
+        var text = "";
         var uRows = self.getRows();
         for (var r in uRows) {
             var rowStr = "";
@@ -175,8 +176,12 @@ var TextTable = function (matchTable) {
             for (var c = 0; c < row.length; c++) {
                 rowStr += string.padRight(row[c] || "", layout[c] || 0);
             }
-            console.log(self.margin + rowStr + (vSpacing > 0 ? Array(vSpacing + 1).join("\n") : ""));
+            text += self.margin + rowStr + (vSpacing > 0 ? Array(vSpacing + 1).join("\n") : "") + "\n";
         }
+
+        console.log(text);
+
+        return text;
     };
 };
 var Option = function (c, description) {
@@ -242,11 +247,11 @@ var Interpreter = function (c, description, parent) {
         }
         if (tableCommands) {
             text += "\nCommands:\n";
-            tableCommands.print();
+            text += tableCommands.print();
         }
         if (tableOptions) {
             text += "\nOptions:\n";
-            tableOptions.print();
+            text += tableOptions.print();
         }
         text += "\n";
         console.log(text);
