@@ -9,7 +9,7 @@
 //
 // Copyright Nick Verlinden (info@createconform.com)
 //
-///////////////////////////////////////////////////////////////////////////////////////////// 
+/////////////////////////////////////////////////////////////////////////////////////////////
 var type;
 var string;
 
@@ -214,9 +214,9 @@ var Interpreter = function (c, description, parent) {
     }
 
     this.displayHelp = function() {
-        console.log("\nUsage: " + self.getFullName() + getUsageParameters(self));
+        var text = "\nUsage: " + self.getFullName() + getUsageParameters(self);
         if (self.description) {
-            console.log("\n" + self.description);
+            text += "\n" + self.description;
         }
         var tableCommands, tableOptions;
         // initialize table (for matching)
@@ -241,14 +241,16 @@ var Interpreter = function (c, description, parent) {
             }
         }
         if (tableCommands) {
-            console.log("\nCommands:\n");
+            text += "\nCommands:\n";
             tableCommands.print();
         }
         if (tableOptions) {
-            console.log("\nOptions:\n");
+            text += "\nOptions:\n";
             tableOptions.print();
         }
-        console.log();
+        text += "\n";
+        console.log(text);
+        return text;
     };
 
     this.getFullName = function () {
@@ -292,8 +294,7 @@ var Interpreter = function (c, description, parent) {
 
         // check if help is needed
         if (args[1] === HELP_OPTION) {
-            self.displayHelp();
-            return;
+            return { "--help" : self.displayHelp() };
         }
 
         // check next argument, if command, invoke parser
