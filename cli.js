@@ -320,6 +320,7 @@ var Interpreter = function (c, description, parent) {
         for (var i in self.commands) {
             if (self.commands[i].name === args[1]) {
                 command[self.commands[i].name] = self.commands[i].parse(args.slice(1));
+                return command;
             }
         }
 
