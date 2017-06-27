@@ -1,6 +1,6 @@
 {
   "name": "cc.cli",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "title": "CLI Package",
   "description": "Library for processing command line interface parameters..",
   "license": "Apache-2.0",
