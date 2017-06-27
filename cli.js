@@ -221,7 +221,7 @@ var Interpreter = function (c, description, parent) {
     }
 
     this.displayHelp = function() {
-        var text = "\nUsage: " + self.getFullName() + getUsageParameters(self) + "\n"; 
+        var text = "\nUsage: " + self.getFullName() + getUsageParameters(self) + "\n";
         if (self.description) {
             text += "\n" + self.description + "\n";
         }
@@ -309,6 +309,8 @@ var Interpreter = function (c, description, parent) {
             self.name = args[0];
         }
 
+        var command = {};
+
         // check if help is needed
         if (args[1] === HELP_OPTION) {
             return { "--help" : self.displayHelp() };
@@ -317,12 +319,11 @@ var Interpreter = function (c, description, parent) {
         // check next argument, if command, invoke parser
         for (var i in self.commands) {
             if (self.commands[i].name === args[1]) {
-                return self.commands[i].parse(args.slice(1));
+                command[self.commands[i].name] = self.commands[i].parse(args.slice(1));
             }
         }
 
         // start parsing commands
-        var command = {};
         command.displayHelp = self.displayHelp;
         var pIdx = 0;
         var oIdx = 0;
