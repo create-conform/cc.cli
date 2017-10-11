@@ -1,12 +1,14 @@
 {
   "name": "cc.cli",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "title": "CLI Package",
   "description": "Library for processing command line interface parameters..",
   "license": "Apache-2.0",
-  "main": "cli.js",
-  "pkxDependencies": [
-    "cc.string.0.1",
-    "cc.type.0.1"
-  ]
+  "pkx" : {
+    "main": "cli.js",
+    "dependencies": [
+      "cc.string.0.2",
+      "cc.type.0.2"
+    ]
+  }
 }
